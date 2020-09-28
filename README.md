@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Why Material-UI?
+For Standardized components and functionality
 
-## Available Scripts
+1. Bootstrap/React-Bootstrap
 
-In the project directory, you can run:
+   - Ported for React
+   - Oldest (suite of pre-styled html elements accessed via classes)
+   - Not originally for React
+   - A bit restrictive, not as easy to customize
 
-### `npm start`
+2. Semantic-UI/Semantic-UI-React
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   - Similar to bootstrap but adds a theming system and seeks to add more functionality
+   - Also ported for React
+   - Dependent on this main library which has no React specific styling
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+3. Material-UI
 
-### `npm test`
+   - Built explicitly for and only for React
+   - Optimized, streamlined experience
+   - Flexible, consistent, customizable - your own design through their library
+   - Active Development and Upkeep, frequent commits
+   - Advanced Feature Support
+   - Sever Side Rendering for server side set ups
+   - Easy to change layouts and adapt the websites
+   - Integrating layouts with grid system and making websites responsive to any screen-size
+   - Provides components
+   - Media Queries
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Responsive Design
 
-### `npm run build`
+   - Any screen-size and orientation
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. SEO — Search Engine Optimization
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+   - Important to clients
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. NEXT.JS & Create-React-App
 
-### `npm run eject`
+   - Migration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+7. Google-Cloud Functions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Store functionality in the cloud at a URL
+   - Makes apps more lightweight
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+8. Google Analytics
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   - A certification available
+   - Analyzing data from users to make smarter applications
 
-## Learn More
+9. Animation Integration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - Personalize designs
+   - Streamlined a process to export and render animations
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+10. Cross-Browser Support
+    - Make sure it looks great in every browser
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Know React, have a node environment to work in and a IDE/code editor
