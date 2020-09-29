@@ -1,60 +1,60 @@
-Why Material-UI?
-For Standardized components and functionality
+### ::Material-UI::
 
-1. Bootstrap/React-Bootstrap
+- For Standardized components and functionality
 
-   - Ported for React
-   - Oldest (suite of pre-styled html elements accessed via classes)
-   - Not originally for React
-   - A bit restrictive, not as easy to customize
+##### Bootstrap/React-Bootstrap
 
-2. Semantic-UI/Semantic-UI-React
+- Ported for React
+- Oldest (suite of pre-styled html elements accessed via classes)
+- Not originally for React
+- A bit restrictive, not as easy to customize
 
-   - Similar to bootstrap but adds a theming system and seeks to add more functionality
-   - Also ported for React
-   - Dependent on this main library which has no React specific styling
+##### Semantic-UI/Semantic-UI-React
 
-3. Material-UI
+- Similar to bootstrap but adds a theming system and seeks to add more functionality
+- Also ported for React
+- Dependent on this main library which has no React specific styling
 
-   - Built explicitly for and only for React
-   - Optimized, streamlined experience
-   - Flexible, consistent, customizable - your own design through their library
-   - Active Development and Upkeep, frequent commits
-   - Advanced Feature Support
-   - Sever Side Rendering for server side set ups
-   - Easy to change layouts and adapt the websites
-   - Integrating layouts with grid system and making websites responsive to any screen-size
-   - Provides components
-   - Media Queries
+##### Material-UI
 
-4. Responsive Design
+- Built explicitly for and only for React
+- Optimized, streamlined experience
+- Flexible, consistent, customizable - your own design through their library
+- Active Development and Upkeep, frequent commits
+- Advanced Feature Support
+- Sever Side Rendering for server side set ups
+- Easy to change layouts and adapt the websites
+- Integrating layouts with grid system and making websites responsive to any screen-size
+- Provides components
+- Media Queries
 
-   - Any screen-size and orientation
+##### Responsive Design
 
-5. SEO — Search Engine Optimization
+- Any screen-size and orientation
 
-   - Important to clients
+##### SEO — Search Engine Optimization
 
-6. NEXT.JS & Create-React-App
+- Important to clients
 
-   - Migration
+##### NEXT.JS & Create-React-App
 
-7. Google-Cloud Functions
+- Migration
 
-   - Store functionality in the cloud at a URL
-   - Makes apps more lightweight
+##### Google-Cloud Functions
 
-8. Google Analytics
+- Store functionality in the cloud at a URL
+- Makes apps more lightweight
 
-   - A certification available
-   - Analyzing data from users to make smarter applications
+##### Google Analytics
 
-9. Animation Integration
+- A certification available
+- Analyzing data from users to make smarter applications
 
-   - Personalize designs
-   - Streamlined a process to export and render animations
+##### Animation Integration
 
-10. Cross-Browser Support
-    - Make sure it looks great in every browser
+- Personalize designs
+- Streamlined a process to export and render animations
 
-Know React, have a node environment to work in and a IDE/code editor
+##### Cross-Browser Support
+
+- Make sure it looks great in every browser
