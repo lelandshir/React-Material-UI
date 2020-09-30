@@ -80,6 +80,7 @@ export default function Header(props) {
 	// create anchorEl and setAnchorEl using useState with default of "null"
 	const [anchorEl, setAnchorEl] = useState(null); //this is the state that stores the componenet we clicked on && where we want the menu to be rendered
 	const [open, setOpen] = useState(false); //determines visibility of the menu
+	const [selectedIndex, setSelectedIndex] = useState(0); //to track the index of the menu items where as they are otherwise mostly the same except for their paths...
 
 	const handleChange = (e, value) => {
 		setValue(value);
@@ -91,11 +92,24 @@ export default function Header(props) {
 		setOpen(true); //tell menu to be rendered
 	};
 
+	const handleMenuItemClick = (e, i) => {
+		setAnchorEl(null);
+		setOpen(false);
+		setSelectedIndex(i);
+	};
+
 	const handleClose = (e) => {
 		//tell the menu to close
 		setAnchorEl(null);
 		setOpen(false);
 	};
+	//so that we may map and assign an index
+	const menuOptions = [
+		{ name: "Services", link: "/services" },
+		{ name: "Custom Software Development", link: "/customsoftware" },
+		{ name: "Mobile App Development", link: "/mobileapps" },
+		{ name: "Website Development", link: "/websites" },
+	];
 
 	useEffect(() => {
 		//to manage the browser running back to home after refresh
@@ -111,6 +125,60 @@ export default function Header(props) {
 			setValue(4);
 		} else if (window.location.pathname === "/estimate" && value !== 5) {
 			setValue(5);
+		}
+
+		switch (window.location.pathname) {
+			case "/":
+				if (value !== 0) {
+					setValue(0);
+				}
+				break;
+			case "/services":
+				if (value !== 1) {
+					setValue(1);
+					setSelectedIndex(0);
+				}
+				break;
+			case "/customsoftware":
+				if (value !== 1) {
+					setValue(1);
+					setSelectedIndex(1);
+				}
+				break;
+			case "/mobileapps":
+				if (value !== 1) {
+					setValue(1);
+					setSelectedIndex(2);
+				}
+				break;
+			case "/websites":
+				if (value !== 1) {
+					setValue(1);
+					setSelectedIndex(3);
+				}
+				break;
+			case "/revolution":
+				if (value !== 2) {
+					setValue(2);
+				}
+				break;
+			case "/about":
+				if (value !== 3) {
+					setValue(3);
+				}
+				break;
+			case "/contact":
+				if (value !== 4) {
+					setValue(4);
+				}
+				break;
+			case "/estimate":
+				if (value !== 5) {
+					setValue(5);
+				}
+				break;
+			default:
+				break;
 		}
 	}, [value]);
 	//as a second argument we pass an array of the dependencies being used in useEffect hook, "value" constant, if this state value hasn't changed don't run this code again/no infinite loops
@@ -188,52 +256,22 @@ export default function Header(props) {
 							MenuListProps={{ onMouseLeave: handleClose }}
 							elevation={0}
 						>
-							<MenuItem
-								//this is how we can set multiple onClick functions; add another set of brackets, turn it into an arrow function, so that it becomes a full expression to call handleclose function, use a semilcolon and call setValue as well
-								onClick={() => {
-									handleClose();
-									setValue(1);
-								}}
-								component={Link}
-								to="/services"
-								classes={{ root: classes.menuItem }}
-							>
-								Services
-							</MenuItem>
-							<MenuItem
-								//this is how we can set multiple onClick functions; add another set of brackets, turn it into an arrow function, so that it becomes a full expression to call handleclose function, use a semilcolon and call setValue as well
-								onClick={() => {
-									handleClose();
-									setValue(1);
-								}}
-								component={Link}
-								to="/customsoftware"
-								classes={{ root: classes.menuItem }}
-							>
-								Custom Software Development
-							</MenuItem>
-							<MenuItem
-								onClick={() => {
-									handleClose();
-									setValue(1);
-								}}
-								component={Link}
-								to="/mobileapps"
-								classes={{ root: classes.menuItem }}
-							>
-								Mobile App Development
-							</MenuItem>
-							<MenuItem
-								onClick={() => {
-									handleClose();
-									setValue(1);
-								}}
-								component={Link}
-								to="/websites"
-								classes={{ root: classes.menuItem }}
-							>
-								Website Development
-							</MenuItem>
+							{menuOptions.map((option, i) => (
+								<MenuItem
+									key={option}
+									component={Link}
+									to={option.link}
+									classes={{ root: classes.menuItem }}
+									onClick={(event) => {
+										handleMenuItemClick(event, i);
+										setValue(1);
+										handleClose();
+									}}
+									selected={i === selectedIndex && value === 1}
+								>
+									{option.name}
+								</MenuItem>
+							))}
 						</Menu>
 					</Toolbar>
 				</AppBar>
