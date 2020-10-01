@@ -130,7 +130,16 @@ You want to use '%' when you want the value to change in realtime as the size of
 
 The 'px' unit should only be used when you want a very explicit value regardless of screen size. This can sometimes be helpful for spacing certain items, but in practice, try to avoid it and use 'rem' instead.
 
+# Component Overview
+
+- If you ever want to change a default setting on a component, endeavor to head to the documentation to see if there are ways to do so via a prop
+
 ### Drawers AKA Side-Panels in Material-UI
 
-- `Drawers` === Navigation Component in Material-UI from temporary to swipeable temporary drawers
+- `Drawers` === Navigation Component in MUI
 - Pages anchored off screen to the left right top or bottom that can be brought on screen when an action is taken to display a a list of further options and information
+
+### Lists
+
+- `Lists` === Data Display Componenets in MUI
+- Lists are vertaile and can render icons or text: ListItemIcon || ListItemText; lots of properties available on the list component
