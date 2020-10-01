@@ -11,6 +11,11 @@ import Button from "@material-ui/core/Button";
 // import { Typography } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 
 //imports from mui-styles
 import { makeStyles } from "@material-ui/styles";
@@ -34,9 +39,21 @@ const useStyles = makeStyles((theme) => ({
 		//taking note of the spread operator use here
 		...theme.mixins.toolbar,
 		marginBottom: "3em",
+		[theme.breakpoints.down("md")]: {
+			marginBottom: "2em",
+		},
+		[theme.breakpoints.down("xs")]: {
+			marginBottom: "1.25em",
+		},
 	},
 	logo: {
 		height: "8em",
+		[theme.breakpoints.down("md")]: {
+			height: "7em",
+		},
+		[theme.breakpoints.down("xs")]: {
+			height: "5.5em",
+		},
 	},
 	tabContainer: {
 		marginLeft: "auto",
@@ -76,32 +93,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
 	const classes = useStyles();
+	const theme = useTheme();
+	const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+	const [openDrawer, setOpenDrawer] = useState(false);
+	//this will select anything that macthes medium and below to return true
+	const matches = useMediaQuery(theme.breakpoints.down("md"));
 	const [value, setValue] = useState(0);
 	// create anchorEl and setAnchorEl using useState with default of "null"
 	const [anchorEl, setAnchorEl] = useState(null); //this is the state that stores the componenet we clicked on && where we want the menu to be rendered
-	const [open, setOpen] = useState(false); //determines visibility of the menu
+	const [openMenu, setOpenMenu] = useState(false); //determines visibility of the menu
 	const [selectedIndex, setSelectedIndex] = useState(0); //to track the index of the menu items where as they are otherwise mostly the same except for their paths...
 
-	const handleChange = (e, value) => {
-		setValue(value);
+	//make use of the imported useTheme for access to the default theme w/in our component
+
+	const handleChange = (e, newValue) => {
+		setValue(newValue);
 	};
 
 	const handleClick = (e) => {
 		//event contains all the information about where we just clicked on screen
 		setAnchorEl(e.currentTarget); //will contain the elemenet we clciked on && tells menu where we want it to be rendered
-		setOpen(true); //tell menu to be rendered
+		setOpenMenu(true); //tell menu to be rendered
 	};
 
 	const handleMenuItemClick = (e, i) => {
 		setAnchorEl(null);
-		setOpen(false);
+		setOpenMenu(false);
 		setSelectedIndex(i);
 	};
 
 	const handleClose = (e) => {
 		//tell the menu to close
 		setAnchorEl(null);
-		setOpen(false);
+		setOpenMenu(false);
 	};
 	//so that we may map and assign an index
 	const menuOptions = [
@@ -182,6 +207,92 @@ export default function Header(props) {
 		}
 	}, [value]);
 	//as a second argument we pass an array of the dependencies being used in useEffect hook, "value" constant, if this state value hasn't changed don't run this code again/no infinite loops
+	const tabs = (
+		<React.Fragment>
+			<Tabs
+				value={value}
+				onChange={handleChange}
+				className={classes.tabContainer}
+			>
+				<Tab className={classes.tab} component={Link} to="/" label="Home" />
+				<Tab
+					aria-owns={anchorEl ? "simple-menu" : undefined}
+					aria-haspopup={anchorEl ? "true" : undefined}
+					className={classes.tab}
+					component={Link}
+					onMouseOver={(event) => handleClick(event)}
+					//menu hangs around on mouseleave unless we target the menu list properties below
+					to="/services"
+					label="Services"
+				/>
+				<Tab
+					className={classes.tab}
+					component={Link}
+					to="/revolution"
+					label="The Revolution"
+				/>
+				<Tab
+					className={classes.tab}
+					component={Link}
+					to="/about"
+					label="About Us"
+				/>
+				<Tab
+					className={classes.tab}
+					component={Link}
+					to="/contact"
+					label="Contact Us"
+				/>
+			</Tabs>
+			<Button variant="contained" color="secondary" className={classes.button}>
+				Free Estimate
+			</Button>
+			<Menu
+				classes={{ paper: classes.menu }}
+				id="simple-menu"
+				anchorEl={anchorEl}
+				open={openMenu}
+				onClose={handleClose}
+				//target the menu list via props to handle the menu closing on MouseLeave #material-ui
+				MenuListProps={{ onMouseLeave: handleClose }}
+				elevation={0}
+			>
+				{menuOptions.map((option, i) => (
+					<MenuItem
+						key={option}
+						component={Link}
+						to={option.link}
+						classes={{ root: classes.menuItem }}
+						onClick={(event) => {
+							handleMenuItemClick(event, i);
+							setValue(1);
+							handleClose();
+						}}
+						selected={i === selectedIndex && value === 1}
+					>
+						{option.name}
+					</MenuItem>
+				))}
+			</Menu>
+		</React.Fragment>
+	);
+
+	const drawer = (
+		<React.Fragment>
+			<SwipeableDrawer
+				disableBackdropTransition={!iOS}
+				disableDiscovery={iOS}
+				open={openDrawer}
+				onClose={() => setOpenDrawer(false)}
+				onOpen={() => setOpenDrawer(true)}
+			>
+				Example Drawer
+			</SwipeableDrawer>
+			<IconButton>
+				<MenuIcon onClick={() => setOpenDrawer(!openDrawer)} disableRipple />
+			</IconButton>
+		</React.Fragment>
+	);
 
 	return (
 		<React.Fragment>
@@ -198,81 +309,7 @@ export default function Header(props) {
 						>
 							<img className={classes.logo} src={logo} alt="company" />
 						</Button>
-
-						<Tabs
-							value={value}
-							onChange={handleChange}
-							className={classes.tabContainer}
-						>
-							<Tab
-								className={classes.tab}
-								component={Link}
-								to="/"
-								label="Home"
-							/>
-							<Tab
-								aria-owns={anchorEl ? "simple-menu" : undefined}
-								aria-haspopup={anchorEl ? "true" : undefined}
-								className={classes.tab}
-								component={Link}
-								onMouseOver={(event) => handleClick(event)}
-								//menu hangs around on mouseleave unless we target the menu list properties below
-								to="/services"
-								label="Services"
-							/>
-							<Tab
-								className={classes.tab}
-								component={Link}
-								to="/revolution"
-								label="The Revolution"
-							/>
-							<Tab
-								className={classes.tab}
-								component={Link}
-								to="/about"
-								label="About Us"
-							/>
-							<Tab
-								className={classes.tab}
-								component={Link}
-								to="/contact"
-								label="Contact Us"
-							/>
-						</Tabs>
-						<Button
-							variant="contained"
-							color="secondary"
-							className={classes.button}
-						>
-							Free Estimate
-						</Button>
-						<Menu
-							classes={{ paper: classes.menu }}
-							id="simple-menu"
-							anchorEl={anchorEl}
-							open={open}
-							onClose={handleClose}
-							//target the menu list via props to handle the menu closing on MouseLeave #material-ui
-							MenuListProps={{ onMouseLeave: handleClose }}
-							elevation={0}
-						>
-							{menuOptions.map((option, i) => (
-								<MenuItem
-									key={option}
-									component={Link}
-									to={option.link}
-									classes={{ root: classes.menuItem }}
-									onClick={(event) => {
-										handleMenuItemClick(event, i);
-										setValue(1);
-										handleClose();
-									}}
-									selected={i === selectedIndex && value === 1}
-								>
-									{option.name}
-								</MenuItem>
-							))}
-						</Menu>
+						{matches ? drawer : tabs}
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>

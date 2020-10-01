@@ -129,3 +129,8 @@ You want to use '%' when you want the value to change in realtime as the size of
 4. px - standard fixed unit. Other units calculate and return respective px values. 1px = 1/96th of 1in
 
 The 'px' unit should only be used when you want a very explicit value regardless of screen size. This can sometimes be helpful for spacing certain items, but in practice, try to avoid it and use 'rem' instead.
+
+### Drawers AKA Side-Panels in Material-UI
+
+- `Drawers` === Navigation Component in Material-UI from temporary to swipeable temporary drawers
+- Pages anchored off screen to the left right top or bottom that can be brought on screen when an action is taken to display a a list of further options and information
