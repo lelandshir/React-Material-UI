@@ -132,16 +132,15 @@ export default function Header(props) {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	//this will select anything that macthes medium and below to return true
 	const matches = useMediaQuery(theme.breakpoints.down("md"));
-	const [value, setValue] = useState(0);
+
 	// create anchorEl and setAnchorEl using useState with default of "null"
 	const [anchorEl, setAnchorEl] = useState(null); //this is the state that stores the componenet we clicked on && where we want the menu to be rendered
 	const [openMenu, setOpenMenu] = useState(false); //determines visibility of the menu
-	const [selectedIndex, setSelectedIndex] = useState(0); //to track the index of the menu items where as they are otherwise mostly the same except for their paths...
 
 	//make use of the imported useTheme for access to the default theme w/in our component
 
 	const handleChange = (e, newValue) => {
-		setValue(newValue);
+		props.setValue(newValue);
 	};
 
 	const handleClick = (e) => {
@@ -153,7 +152,7 @@ export default function Header(props) {
 	const handleMenuItemClick = (e, i) => {
 		setAnchorEl(null);
 		setOpenMenu(false);
-		setSelectedIndex(i);
+		props.setSelectedIndex(i);
 	};
 
 	const handleClose = (e) => {
@@ -203,10 +202,13 @@ export default function Header(props) {
 		[...menuOptions, ...routes].forEach((route) => {
 			switch (window.location.pathname) {
 				case `${route.link}`:
-					if (value !== route.activeIndex) {
-						setValue(route.activeIndex);
-						if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-							setSelectedIndex(route.selectedIndex);
+					if (props.value !== route.activeIndex) {
+						props.setValue(route.activeIndex);
+						if (
+							route.selectedIndex &&
+							route.selectedIndex !== props.selectedIndex
+						) {
+							props.setSelectedIndex(route.selectedIndex);
 						}
 					}
 					break;
@@ -215,13 +217,13 @@ export default function Header(props) {
 			}
 		});
 		//to manage the browser running back to home after refresh
-	}, [value, menuOptions, selectedIndex, routes]);
+	}, [props.value, menuOptions, props.selectedIndex, routes, props]);
 	//as a second argument we pass an array of the dependencies being used in useEffect hook, "value" constant, if this state value hasn't changed don't run this code again/no infinite loops
 
 	const tabs = (
 		<React.Fragment>
 			<Tabs
-				value={value}
+				value={props.value}
 				onChange={handleChange}
 				className={classes.tabContainer}
 				indicatorColor="primary"
@@ -263,10 +265,10 @@ export default function Header(props) {
 						classes={{ root: classes.menuItem }}
 						onClick={(event) => {
 							handleMenuItemClick(event, i);
-							setValue(1);
+							props.setValue(1);
 							handleClose();
 						}}
-						selected={i === selectedIndex && value === 1}
+						selected={i === props.selectedIndex && props.value === 1}
 					>
 						{option.name}
 					</MenuItem>
@@ -291,13 +293,13 @@ export default function Header(props) {
 						<ListItem
 							onClick={() => {
 								setOpenDrawer(false);
-								setValue(route.activeIndex);
+								props.setValue(route.activeIndex);
 							}}
 							divider
 							button
 							component={Link}
 							to={route.link}
-							selected={value === route.activeIndex}
+							selected={props.value === route.activeIndex}
 							classes={{ selected: classes.drawerItemSelected }}
 							key={`${route}.${route.activeIndex}`}
 						>
@@ -310,7 +312,7 @@ export default function Header(props) {
 					<ListItem
 						onClick={() => {
 							setOpenDrawer(false);
-							setValue(5);
+							props.setValue(5);
 						}}
 						divider
 						button
@@ -320,7 +322,7 @@ export default function Header(props) {
 							selected: classes.drawerItemSelected,
 						}}
 						to="/estimate"
-						selected={value === 5}
+						selected={props.value === 5}
 					>
 						<ListItemText className={classes.drawerItem} disableTypography>
 							Free Estimate
@@ -348,7 +350,7 @@ export default function Header(props) {
 							disableRipple
 							component={Link}
 							to="/"
-							onClick={() => setValue(0)}
+							onClick={() => props.setValue(0)}
 							className={classes.logoContainer}
 						>
 							<img className={classes.logo} src={logo} alt="company" />

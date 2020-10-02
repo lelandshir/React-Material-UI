@@ -75,7 +75,7 @@ Install the Dependency: `npm i @material-ui/styles`
 
 - To create a theme for an application, aka colors and styles we're going to reuse, we can create a Theme component import createMuiTheme and export the createMuiTheme Material-UI hook to get access to the theme object in other files. Similarly to Styled Components && CSS Variables, we get access to everything on this object when we import useTheme and `const theme = useTheme();` to get access to the theme object. We can then pass this `useStyles/makeStyles(theme)` in other components. We can `useStyles/makeStyles(theme)`, return, and store styles on this object when we have select styles in a component. But for more consistency we can store reusable styles in the `createMuiTheme` hook. Notes on using theme.breakpoints further down...
 
-`- const useStyles = makeStyles(theme => ({ targetEl: { cssProp: "cssVal", }, targetEl2: { cssProp: "cssVal, "&hover:": { cssProp: "cssVal } } }))`
+`- const useStyles = makeStyleste(theme => ({ targetEl: { cssProp: "cssVal", }, targetEl2: { cssProp: "cssVal, "&hover:": { cssProp: "cssVal } } }))`
 
 # Responsive Design
 
@@ -153,3 +153,13 @@ The 'px' unit should only be used when you want a very explicit value regardless
 ### zIndex && position
 
 - learned to make great use of these CSS style keys when implementing a header, footer and drawers. We never want drawers to slide over the header and footer bc it covers valuable content. Use a combo of zIndex, position and Material-UI's props to control these details.
+
+### Grid Overview
+
+- Grid is a component in layouts, and adapts to screen size
+- Grid System is connected to the Media Query system,
+  we can use this to our advantage
+
+  - There are 2 grid eleemnts, containers and items. Items have access to the same props on `breakpoints` "xs, sm, etc" and range from 1-12. 12 is 100% screen width while 6 of 12 is 50% and so on. The rules are applied via the props. size is the key, 1-12 is the acceptable value.
+
+  - justfiy and alignItems props orients items along a certain axis dependent on grid direction

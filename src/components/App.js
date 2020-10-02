@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import Header from "../components/ui/Header";
@@ -12,16 +12,20 @@ To promote greater consistency between apps, light and dark theme types are avai
 // `Switch component` only renders the 1st component that mactches the given route
 // `BroswerRouter component` handles providing the browser with correct url for each page navigated to, and manipulates the history object which enables navigation using the forward and back buttons
 export default function App() {
+	const [selectedIndex, setSelectedIndex] = useState(0); //to track the index of the menu items where as they are otherwise mostly the same except for their paths...
+	const [value, setValue] = useState(0);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
-				<Header />
+				<Header
+					value={value}
+					setValue={setValue}
+					selectedIndex={selectedIndex}
+					setSelectedIndex={setSelectedIndex}
+				/>
 				<Switch>
-					<Route
-						exact
-						path="/"
-						component={() => <div style={{ height: "687px" }}>Home</div>}
-					/>
+					<Route exact path="/" component={() => <div>Home</div>} />
 					<Route exact path="/services" component={() => <div>Services</div>} />
 					<Route
 						exact
@@ -43,7 +47,12 @@ export default function App() {
 					<Route exact path="/contact" component={() => <div>Contact</div>} />
 					<Route exact path="/estimate" component={() => <div>Estimate</div>} />
 				</Switch>
-				<Footer />
+				<Footer
+					value={value}
+					setValue={setValue}
+					selectedIndex={selectedIndex}
+					setSelectedIndex={setSelectedIndex}
+				/>
 			</BrowserRouter>
 		</ThemeProvider>
 	);
