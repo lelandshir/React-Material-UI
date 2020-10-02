@@ -71,6 +71,12 @@ Install the Dependency: `npm i @material-ui/styles`
 
 - Palette is an Obj inside of Theme with color options we can set to variables so that we only have to change it once to edit the theme throughout our UI. We pass palette as an obj to the `createMuiTheme` hook and set our properties in a compone
 
+### The hook I enjoy more than CSS Styled Components
+
+- To create a theme for an application, aka colors and styles we're going to reuse, we can create a Theme component import createMuiTheme and export the createMuiTheme Material-UI hook to get access to the theme object in other files. Similarly to Styled Components && CSS Variables, we get access to everything on this object when we import useTheme and `const theme = useTheme();` to get access to the theme object. We can then pass this `useStyles/makeStyles(theme)` in other components. We can `useStyles/makeStyles(theme)`, return, and store styles on this object when we have select styles in a component. But for more consistency we can store reusable styles in the `createMuiTheme` hook. Notes on using theme.breakpoints further down...
+
+`- const useStyles = makeStyles(theme => ({ targetEl: { cssProp: "cssVal", }, targetEl2: { cssProp: "cssVal, "&hover:": { cssProp: "cssVal } } }))`
+
 # Responsive Design
 
 - Responsive Design provides the best UX; Compatibility for all devices vs. `Fixed Design` === one layout no matter what; results in the worst UX.
@@ -143,3 +149,7 @@ The 'px' unit should only be used when you want a very explicit value regardless
 
 - `Lists` === Data Display Componenets in MUI
 - Lists are vertaile and can render icons or text: ListItemIcon || ListItemText; lots of properties available on the list component
+
+### zIndex && position
+
+- learned to make great use of these CSS style keys when implementing a header, footer and drawers. We never want drawers to slide over the header and footer bc it covers valuable content. Use a combo of zIndex, position and Material-UI's props to control these details.

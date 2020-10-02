@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import Header from "../components/ui/Header";
 import theme from "./ui/Theme";
+import Footer from "../components/ui/Footer";
 /*
 Themes (ThemeProvider) let you apply a consistent tone to your app. It allows you to customize all design aspects of your project in order to meet the specific needs of your business or brand.
 To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type. 
@@ -16,7 +17,11 @@ export default function App() {
 			<BrowserRouter>
 				<Header />
 				<Switch>
-					<Route exact path="/" component={() => <div>Home</div>} />
+					<Route
+						exact
+						path="/"
+						component={() => <div style={{ height: "687px" }}>Home</div>}
+					/>
 					<Route exact path="/services" component={() => <div>Services</div>} />
 					<Route
 						exact
@@ -38,6 +43,7 @@ export default function App() {
 					<Route exact path="/contact" component={() => <div>Contact</div>} />
 					<Route exact path="/estimate" component={() => <div>Estimate</div>} />
 				</Switch>
+				<Footer />
 			</BrowserRouter>
 		</ThemeProvider>
 	);
