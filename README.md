@@ -163,3 +163,10 @@ The 'px' unit should only be used when you want a very explicit value regardless
   - There are 2 grid eleemnts, containers and items. Items have access to the same props on `breakpoints` "xs, sm, etc" and range from 1-12. 12 is 100% screen width while 6 of 12 is 50% and so on. The rules are applied via the props. size is the key, 1-12 is the acceptable value.
 
   - justfiy and alignItems props orients items along a certain axis dependent on grid direction
+
+  ## Landing Page :: Homepage
+
+  Animations:: add professionalism to a website
+
+  - After Effects
+    Call to Action -> Free estimate

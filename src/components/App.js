@@ -4,6 +4,8 @@ import { ThemeProvider } from "@material-ui/styles";
 import Header from "../components/ui/Header";
 import theme from "./ui/Theme";
 import Footer from "../components/ui/Footer";
+import LandingPage from "../components/LandingPage";
+
 /*
 Themes (ThemeProvider) let you apply a consistent tone to your app. It allows you to customize all design aspects of your project in order to meet the specific needs of your business or brand.
 To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type. 
@@ -25,7 +27,7 @@ export default function App() {
 					setSelectedIndex={setSelectedIndex}
 				/>
 				<Switch>
-					<Route exact path="/" component={() => <div>Home</div>} />
+					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/services" component={() => <div>Services</div>} />
 					<Route
 						exact
