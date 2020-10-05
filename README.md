@@ -170,3 +170,7 @@ The 'px' unit should only be used when you want a very explicit value regardless
 
   - After Effects
     Call to Action -> Free estimate
+  - Card Components
+
+  👇🏾 Keyboard Shortcut Tip:
+  `ctrl` + `cmd` + spacebar => pulls up emoji menu 🤓
