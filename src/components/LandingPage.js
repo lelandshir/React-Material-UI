@@ -8,6 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+
+import CallToAction from "./ui/CallToAction";
+
 //assests and animation imports
 import animationData from "../animations/landinganimation/data";
 import customSoftwareIcon from "../assets/Custom Software Icon.svg";
@@ -414,7 +417,12 @@ export default function LandingPage() {
 					<div className={classes.infoBackground} />
 				</Grid>
 			</Grid>
+			{/*----- CALL TO ACTION Block ----- */}
+			<Grid item>
+				<CallToAction />
+			</Grid>
 		</Grid>
 	);
 }
 //grid direction of column will give a vertical look we want for the card
+//call to action is typically on the bottom of each site
