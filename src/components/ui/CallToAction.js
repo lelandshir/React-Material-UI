@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	estimateButton: {
 		...theme.typography.estimate,
+
 		borderRadius: 50,
 		hieght: 80,
 		width: 205,
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down("sm")]: {
 			marginLeft: 0,
 			marginRight: 0,
+		},
+		"&:hover": {
+			backgroundColor: theme.palette.common.orange,
 		},
 	},
 }));
