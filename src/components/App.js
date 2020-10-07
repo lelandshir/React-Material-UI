@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import Header from "../components/ui/Header";
+import Header from "./ui/Header";
 import theme from "./ui/Theme";
-import Footer from "../components/ui/Footer";
-import LandingPage from "../components/LandingPage";
+import Footer from "./ui/Footer";
+import LandingPage from "./LandingPage";
+import Services from "./Services";
 
 /*
 Themes (ThemeProvider) let you apply a consistent tone to your app. It allows you to customize all design aspects of your project in order to meet the specific needs of your business or brand.
@@ -27,8 +28,28 @@ export default function App() {
 					setSelectedIndex={setSelectedIndex}
 				/>
 				<Switch>
-					<Route exact path="/" component={LandingPage} />
-					<Route exact path="/services" component={() => <div>Services</div>} />
+					<Route
+						exact
+						path="/"
+						render={(props) => (
+							<LandingPage
+								{...props}
+								setValue={setValue}
+								setSelectedIndex={setSelectedIndex}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/services"
+						render={(props) => (
+							<Services
+								{...props}
+								setValue={setValue}
+								setSelectedIndex={setSelectedIndex}
+							/>
+						)}
+					/>
 					<Route
 						exact
 						path="/customsoftware"
@@ -49,12 +70,7 @@ export default function App() {
 					<Route exact path="/contact" component={() => <div>Contact</div>} />
 					<Route exact path="/estimate" component={() => <div>Estimate</div>} />
 				</Switch>
-				<Footer
-					value={value}
-					setValue={setValue}
-					selectedIndex={selectedIndex}
-					setSelectedIndex={setSelectedIndex}
-				/>
+				<Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
 			</BrowserRouter>
 		</ThemeProvider>
 	);

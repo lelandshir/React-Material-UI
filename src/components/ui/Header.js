@@ -216,6 +216,9 @@ export default function Header(props) {
 						}
 					}
 					break;
+				case "/estimate":
+					props.setValue(5);
+					break;
 				default:
 					break;
 			}
@@ -246,7 +249,14 @@ export default function Header(props) {
 				))}
 			</Tabs>
 
-			<Button variant="contained" color="secondary" className={classes.button}>
+			<Button
+				component={Link}
+				to="/estimate"
+				variant="contained"
+				color="secondary"
+				className={classes.button}
+				onCLick={() => props.setValue(5)}
+			>
 				Free Estimate
 			</Button>
 			<Menu
