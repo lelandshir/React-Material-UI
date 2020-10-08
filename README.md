@@ -87,6 +87,12 @@ Install the Dependency: `npm i @material-ui/styles`
 
 ===
 
+### react-lottie
+
+- to render animations in react
+
+===
+
 ### Responsive Design Best Practices:
 
 1. Relative Units; VW/VH Viewport Width && Height
@@ -171,6 +177,7 @@ The 'px' unit should only be used when you want a very explicit value regardless
   - After Effects
     Call to Action -> Free estimate
   - Card Components
+    -Image Parallax Effect => backgroundAttachment: "fixed"
 
   👇🏾 Keyboard Shortcut Tip:
   `ctrl` + `cmd` + spacebar => pulls up emoji menu 🤓
