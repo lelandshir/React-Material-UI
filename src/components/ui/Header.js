@@ -89,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
 			opacity: 1,
 		},
 	},
-
 	logoContainer: {
 		padding: 0,
 		//stop the opacity overlay with the built in hoiver effect like so
