@@ -181,3 +181,27 @@ The 'px' unit should only be used when you want a very explicit value regardless
 
   👇🏾 Keyboard Shortcut Tip:
   `ctrl` + `cmd` + spacebar => pulls up emoji menu 🤓
+
+  ### Tips & Trics: Resizing with Grid and useMediaQuery Hook
+
+  adding margin:
+
+  - Add a style obj of marginBottom: "10em" to the wrapping item container Grid
+
+  hide an element at a certain screen width w/ material-ui:
+
+  - Use the Hidden Component as seen in the landding page:  
+    `<Hidden mdDown> <HideMe/> </Hidden>`
+
+Working with breakpoints on the theme object:
+
+- Be sure to import `useMediaQuery` and set a constant as seen below and pass `theme.breakpoints.down("md")`
+- `const matchesMD = useMediaQuery(theme.breakpoints.down("md"));`
+- find the Grid item container that holds the grid items you want to `justify` once reaching the breakpoint that matches MD (medium), using `breakpoints` off of the `theme` object
+- set `justify` on the Grid item container to a ternary statement as seen here:
+  ` <Grid item container direction="row" justify={matchesMD ? "center" : undefined} > ...`
+
+  - we can also set responsiveness using theme.breakpoints on the styles object
+    `mainContainer: { paddingLeft: "5em", paddingRight: "5em", paddingTop: "2em", paddingBottom: "10em", [theme.breakpoints.down("sm")]: { paddingLeft: "1.5em", paddingRight: "1.5em", },`
+
+    - More Grid items more control!
