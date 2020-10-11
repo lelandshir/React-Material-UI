@@ -207,3 +207,14 @@ Working with breakpoints on the theme object:
     - The more we structure out our layouts with Grid item(S)/container(s) components the more control we have over how the application looks and operates
     - Use the matches constant with the `useMediaQuery` hook passing the theme.breakpoints.down("size") :: it really comes in handy for ternary statements on props when working toward a responsive layout
     - Work section by section to achieve best results, build the layout for the desktop users first then size down from large to medium to small breakpoints applying ternaries where necessary -- be sure to commit often, each time we finish a section
+    - Grid items must be containers in order to be justified
+
+    - Remeber: We can't use the alignItems (center (center) props on a wrapping container if trying to move a container inside of it. We havr to apply that to an item.
+
+    - Often, it'll make more sense in the code.
+
+    ### Text Field Component
+
+    - Allow users to enter text into the UI
+    - Form props available are similar to basic HTML props such as `required`, `disabled`, `password`, `read only`, `number`, etc...
+    - label prop is neat; sets the name and jumps to small when clicked to give space for user input
