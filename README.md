@@ -204,4 +204,6 @@ Working with breakpoints on the theme object:
   - we can also set responsiveness using theme.breakpoints on the styles object
     `mainContainer: { paddingLeft: "5em", paddingRight: "5em", paddingTop: "2em", paddingBottom: "10em", [theme.breakpoints.down("sm")]: { paddingLeft: "1.5em", paddingRight: "1.5em", },`
 
-    - More Grid items more control!
+    - The more we structure out our layouts with Grid item(S)/container(s) components the more control we have over how the application looks and operates
+    - Use the matches constant with the `useMediaQuery` hook passing the theme.breakpoints.down("size") :: it really comes in handy for ternary statements on props when working toward a responsive layout
+    - Work section by section to achieve best results, build the layout for the desktop users first then size down from large to medium to small breakpoints applying ternaries where necessary -- be sure to commit often, each time we finish a section

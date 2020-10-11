@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	logoContainer: {
 		padding: 0,
-		//stop the opacity overlay with the built in hoiver effect like so
+		//stop the opacity overlay with the built in hover effect like so
 		"&:hover": {
 			backgroundColor: "transparent",
 		},
@@ -254,7 +254,7 @@ export default function Header(props) {
 				variant="contained"
 				color="secondary"
 				className={classes.button}
-				onCLick={() => props.setValue(5)}
+				onClick={() => props.setValue(5)}
 			>
 				Free Estimate
 			</Button>
