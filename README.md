@@ -188,6 +188,9 @@ The 'px' unit should only be used when you want a very explicit value regardless
 
   ### Tips & Trics: Resizing with Grid and useMediaQuery Hook
 
+  - Grid items must be containers in order to be justified
+  - The `container` prop tells an item to take up a width of 100% of the space avaiable, so `alignItems` could be tricky
+
   adding margin:
 
   - Add a style obj of marginBottom: "10em" to the wrapping item container Grid
@@ -211,7 +214,6 @@ Working with breakpoints on the theme object:
     - The more we structure out our layouts with Grid item(S)/container(s) components the more control we have over how the application looks and operates
     - Use the matches constant with the `useMediaQuery` hook passing the theme.breakpoints.down("size") :: it really comes in handy for ternary statements on props when working toward a responsive layout
     - Work section by section to achieve best results, build the layout for the desktop users first then size down from large to medium to small breakpoints applying ternaries where necessary -- be sure to commit often, each time we finish a section
-    - Grid items must be containers in order to be justified
 
     - Remeber: We can't use the alignItems (center (center) props on a wrapping container if trying to move a container inside of it. We havr to apply that to an item.
 
@@ -227,3 +229,29 @@ Working with breakpoints on the theme object:
 
 - adding an overrides object to the theme outside of the typography section
 - Plenty of information on this in the Material-UI documentation
+
+### Background for desktop switch to Mobile
+
+background: {
+`backgroundImage: `url(\${background})`,`
+backgroundPosition: "center",
+backgroundSize: "cover",
+backgroundRepeat: "no-repeat",
+height: "60em",
+paddingBottom: "10em",
+`[theme.breakpoints.down("md")]: { backgroundImage:`url(\${mobileBackground})`, },`
+},
+
+### Nested Ternary Statements:
+
+- marginTop: matchesSM ? "1em" : matchesMD ? "5em" : 0
+
+### Input Fields -- Validation && Error Prop Available to us
+
+- error prop
+- helperText prop: `helperText="Please enter a name"`
+- use hooks and JS to help here
+
+### Dialogs -> Feedback -> Modal
+
+- Added a confirm message modal with this component
