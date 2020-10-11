@@ -172,6 +172,8 @@ The 'px' unit should only be used when you want a very explicit value regardless
 
   - Size props, for example, the `lg` prop lets grid item containers know when to share the space with other grid item containers. Adding a number to the prop tells the container how many columns of space to take up on the screen. I believe there are 12 columns by default; So by adding `lg={9}` to one container and `lg={3}` to another, you'd be telling one item to take up 3 quarters of the space available, reserving that last quarter for the other container. So 2 lg props w/o a number on 2 separate containers take up 6 spots each - half and half.
 
+  - grid item containers have a default direction of row
+
   ## Landing Page :: Homepage ::
 
   Animations:: add professionalism to a website
@@ -220,3 +222,8 @@ Working with breakpoints on the theme object:
     - Allow users to enter text into the UI
     - Form props available are similar to basic HTML props such as `required`, `disabled`, `password`, `read only`, `number`, etc...
     - label prop is neat; sets the name and jumps to small when clicked to give space for user input
+
+### Theme Overrides
+
+- adding an overrides object to the theme outside of the typography section
+- Plenty of information on this in the Material-UI documentation
