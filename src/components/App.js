@@ -11,6 +11,7 @@ import MobileApps from "./MobileApps";
 import Websites from "./Websites";
 import Revolution from "./Revolution";
 import About from "./About";
+import Contact from "./Contact";
 
 /*
 Themes (ThemeProvider) let you apply a consistent tone to your app. It allows you to customize all design aspects of your project in order to meet the specific needs of your business or brand.
@@ -110,7 +111,17 @@ export default function App() {
 							/>
 						)}
 					/>
-					<Route exact path="/contact" component={() => <div>Contact</div>} />
+					<Route
+						exact
+						path="/contact"
+						render={(props) => (
+							<Contact
+								{...props}
+								setValue={setValue}
+								setSelectedIndex={setSelectedIndex}
+							/>
+						)}
+					/>
 					<Route exact path="/estimate" component={() => <div>Estimate</div>} />
 				</Switch>
 				<Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
