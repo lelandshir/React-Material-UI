@@ -19,7 +19,7 @@ import mobileAppsIcon from "../assets/mobileIcon.svg";
 import websitesIcon from "../assets/websiteIcon.svg";
 import revolutionBackground from "../assets/repeatingBackground.svg";
 import infoBackground from "../assets/infoBackground.svg";
-import { getThemeProps } from "@material-ui/styles";
+// import { getThemeProps } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
 	animation: {

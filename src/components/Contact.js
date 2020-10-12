@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -8,6 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
+import CircularProgress from "@material-ui/core/CircularProgress";
+// we must render this component conditionally
 
 import ButtonArrow from "./ui/ButtonArrow";
 
@@ -98,6 +102,8 @@ export default function Contact(props) {
 
 	const [open, setOpen] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+
 	const onChange = (event) => {
 		let valid;
 
@@ -131,6 +137,33 @@ export default function Contact(props) {
 				break;
 		}
 	};
+
+	const onConfirm = () => {
+		setLoading(true);
+		const cors = "https://cors-anywhere.herokuapp.com/";
+		axios
+			.get(
+				`${cors}https://us-central1-material-ui-project-d27ca.cloudfunctions.net/sendMail`
+			)
+			.then((res) => {
+				setLoading(false);
+				setOpen(false);
+				setName("");
+				setEmail("");
+				setPhone("");
+				setMessage("");
+			})
+			.catch((err) => {
+				setLoading(false);
+			});
+	};
+
+	const buttonContents = (
+		<React.Fragment>
+			Send Message
+			<img src={airplane} alt="paper airplane" style={{ marginLeft: "1em" }} />
+		</React.Fragment>
+	);
 
 	return (
 		<Grid container direction="row">
@@ -262,24 +295,19 @@ export default function Contact(props) {
 						</Grid>
 						<Grid item container justify="center" style={{ marginTop: "2em" }}>
 							<Button
-								// disabled={
-								// 	name.length === 0 ||
-								// 	message.length === 0 ||
-								// 	phoneHelper.length !== 0 ||
-								// 	emailHelper.length !== 0 ||
-								// 	email.length === 0 ||
-								// 	phone.length === 0
-								// }
+								disabled={
+									name.length === 0 ||
+									message.length === 0 ||
+									phoneHelper.length !== 0 ||
+									emailHelper.length !== 0 ||
+									email.length === 0 ||
+									phone.length === 0
+								}
 								variant="contained"
 								className={classes.sendButton}
 								onClick={() => setOpen(true)}
 							>
-								Send Message
-								<img
-									src={airplane}
-									alt="paper airplane"
-									style={{ marginLeft: "1em" }}
-								/>
+								{buttonContents}
 							</Button>
 						</Grid>
 					</Grid>
@@ -381,24 +409,19 @@ export default function Contact(props) {
 						</Grid>
 						<Grid item>
 							<Button
-								// disabled={
-								// 	name.length === 0 ||
-								// 	message.length === 0 ||
-								// 	phoneHelper.length !== 0 ||
-								// 	emailHelper.length !== 0 ||
-								// 	email.length === 0 ||
-								// 	phone.length === 0
-								// }
+								disabled={
+									name.length === 0 ||
+									message.length === 0 ||
+									phoneHelper.length !== 0 ||
+									emailHelper.length !== 0 ||
+									email.length === 0 ||
+									phone.length === 0
+								}
 								variant="contained"
 								className={classes.sendButton}
-								onClick={() => setOpen(true)}
+								onClick={onConfirm}
 							>
-								Send Message
-								<img
-									src={airplane}
-									alt="paper airplane"
-									style={{ marginLeft: "1em" }}
-								/>
+								{loading ? <CircularProgress size={30} /> : buttonContents}
 							</Button>
 						</Grid>
 					</Grid>

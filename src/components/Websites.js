@@ -166,12 +166,7 @@ export default function Websites(props) {
 				<Grid item>
 					<Grid container direction="column">
 						<Grid item>
-							<Typography
-								align="center"
-								align="center"
-								variant="h4"
-								gutterBottom
-							>
+							<Typography align="center" variant="h4" gutterBottom>
 								E-Commerce
 							</Typography>
 						</Grid>
@@ -250,12 +245,7 @@ export default function Websites(props) {
 				<Grid item>
 					<Grid container direction="column">
 						<Grid item>
-							<Typography
-								align="center"
-								align="center"
-								variant="h4"
-								gutterBottom
-							>
+							<Typography align="center" variant="h4" gutterBottom>
 								Search Engine
 								<br />
 								Optimization

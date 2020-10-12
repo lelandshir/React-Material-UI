@@ -331,6 +331,54 @@ paddingBottom: "10em",
 - When trying to access a resource not on the same domain as you, request may be blocked
 - Makes cross site scripting difficult
 
-### NOW Sending the Message:
+#### Extra CORS tool is `cors-anywhere`
 
--
+- CORS policy: No 'Access-Control-Allow-Origin' header
+
+If you get the following error when clicking the send message button and not receiving any data. You can add cors for the react side to fix the issues.
+
+Problem:
+
+- Access to XMLHttpRequest at 'YOUR_URL' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+Solution:
+
+const onConfirm = () => {
+const cors = 'https://cors-anywhere.herokuapp.com/';
+axios
+.get(
+`${cors}YOUR_URL`
+)
+.then(res => console.log(res))
+.catch(err => console.log(err));
+};
+
+### Sending the Message:
+
+#### Axios
+
+`https://github.com/axios/axios`
+
+- Used to handle network requests, has a simple API, has a simple option for sending query parameters
+- `npm i axios` && require (node), import (react) axios from axios
+- `axios.get().then().catch().finally()`
+
+From here - Should be successfully able to send off a `network request` using `axios` from the contact page to `trigger` the `cloud function` on `firebase`.
+
+===
+
+### Progress Indicators via Material-UI
+
+- aka spinners, express an unspecified wait time or display length of a process.
+- Animation works with CSS not JavaScript (very lightweight)
+- Circular || Linear Determinate - ie: CircularProgress Component - check sthe loading state
+
+- Contact JS
+- Render: {loading ? <CircularProgress size={30} /> : buttonContents} in the button instead of text and an image
+
+===
+
+### Snackbar Component
+
+- Provide brief messages about app processes
+- Like on linkedin when you perform an action and the small dialog box appears at the bottom right of the page

@@ -174,7 +174,6 @@ export default function Footer(props) {
 							<Grid
 								item
 								component={Link}
-								onClick={() => props.setValue(0)}
 								to="/about"
 								className={classes.link}
 								onClick={() => props.setValue(3)}
@@ -184,7 +183,6 @@ export default function Footer(props) {
 							<Grid
 								item
 								component={Link}
-								onClick={() => props.setValue(0)}
 								to="/about"
 								className={classes.link}
 								onClick={() => props.setValue(3)}
@@ -194,7 +192,6 @@ export default function Footer(props) {
 							<Grid
 								item
 								component={Link}
-								onClick={() => props.setValue(0)}
 								to="/about"
 								className={classes.link}
 								onClick={() => props.setValue(3)}
@@ -208,7 +205,6 @@ export default function Footer(props) {
 							<Grid
 								item
 								component={Link}
-								onClick={() => props.setValue(0)}
 								to="/contact"
 								className={classes.link}
 								onClick={() => props.setValue(4)}
