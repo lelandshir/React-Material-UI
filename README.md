@@ -382,3 +382,15 @@ From here - Should be successfully able to send off a `network request` using `a
 
 - Provide brief messages about app processes
 - Like on linkedin when you perform an action and the small dialog box appears at the bottom right of the page
+
+===
+
+### Sending Form Values
+
+- Working in Contact.js
+- Query Strings are parameters inside a URL
+  Example: in `https://youtube.com/results?search_query=4k+video`
+- the query string name === search_query && the value === 4k+video
+- after the URL string in the axios network request, as a second argument pass the query string as an object called params, passing all the props and values
+- check out the mailOptions object in functions -> index.js ...folllow that
+- professional email template :: table based -> html response
