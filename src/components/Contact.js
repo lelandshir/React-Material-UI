@@ -201,10 +201,10 @@ export default function Contact(props) {
 									style={{ color: theme.palette.common.blue, fontSize: "1rem" }}
 								>
 									<a
-										href="mailto:lelandshir@gmail.com"
+										href="mailto:lelandmshirley@gmail.com"
 										style={{ textDecoration: "none", color: "inherit" }}
 									>
-										lelandshir@gmail.com
+										lelandmshirley@gmail.com
 									</a>
 								</Typography>
 							</Grid>

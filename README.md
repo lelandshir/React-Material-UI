@@ -255,3 +255,82 @@ paddingBottom: "10em",
 ### Dialogs -> Feedback -> Modal
 
 - Added a confirm message modal with this component
+
+### Google Cloud Functions: Nodemailer and
+
+- Sending a message; need a backend and a server
+- This is front-end only app and we don't need to set up a custom server for this little bit of functionality
+- Hello, `Firebase`, a Google-owned co. providing serverless backend functionality like real-time DB's, authentication, and cloud functions
+- `Nodemailer`, a clean and lightwight email package built to be run in a node server environment; configure the mailer, pass it certain data, and have the appropriate email created and sent to specified recipient
+
+### Firebase
+
+- owned by google
+- provides backend cloud services; such as real-time DB's, authentication, and cloud functions
+- Serverless, only work with the top level API
+- Never have to update or maintain any servers
+
+### I. Firebase Setup:
+
+1. In browser: https://firebase.google.com/ -> Be sign into google acct
+1. Get started -> Create a project -> title it
+1. go to menu -> functions -> get started
+1. On command line: `sudo npm install -g firebase-tools`
+1. then run: `firebase login`; choose y or n for analytics -> browser will open
+1. Login to the google acct used to set up Firebase and allow Firebase CLI permsissions -> should say "success"
+1. In project folder: run `firebase init`
+1. Firebase will ask what features we're using; select with arrows and select `functions` with spacebar and enter to continue
+1. Use an exisitng project
+1. Select the project set up in the browser and press enter
+1. Choose JavaScript as the language and press enter
+1. Yes, use ESLint
+1. Yes install dependencies
+1. Terminal -> "Firebase initialization complete!"
+1. Functions folder will appear in project folder
+1. find index.js ...
+1. add these two constants: `const config = functions.config()` &&
+   `const admin = require("firebase=admin")` -> dependencies that were installed for us with firebase -> seen in package.json
+1. Under `admin` call `admin.initializeApp()`
+1. Must check out Nodemailer setup and deploy the function to use in next steps
+
+### II. Nodemailer Package Setup:
+
+- `http://nodemailer.com/about/`
+
+1. cd into the functions folder and run command: `npm i --save nodemailer`
+1. add `const nodemailer = require("nodemailer");` to index.js in functions folder
+1. const transporter = nodemailer.createTransport({})
+1. Google Email Account -> turn `on` "Less Secure App Access" in Account Settings -> Security :: Because we want to give a program like Nodemailer permission to send emails from our account -> set UN && PW in next step
+1. still in functions folder run command: `firebase functions:config:set user.email="<emailHere>"`
+1. then run: `firebase functions:config:set user.password='<passwordHere>'`
+1. Terminal: "✔ Functions config updated."
+1. use the properties set in the auth as seen in the file
+1. set up mailOptions constant with from, to, subject, text
+1. uncomment the exported function and change the name to `sendMail` instead of `helloWorld`
+1. After editing the function as seen in the file ->
+1. Run: `firebase deploy` to launch our function to google-cloud so that it is hosted and ready at our URL
+1. The function link is where our cloud function lives -> Test it by going to the link and seeing if the message sent
+1. If that works, in functions folder `npm i --save cors`
+1. Require CORS and set it's cross-origin access prop to true - `const cors = require("cors")({ origin: true });`
+1. Use `cors` in sendMail function, passing `req`, `res`, and an ES6 arrow function firing the transporter.sendMail method
+
+#### Troubleshooting -> Extra Tips :: Nodemailer/Firebase:
+
+- Set up an App specific password after setting up 2 factor authentication
+- Use that password for setting the environment variable otherwise there may be some security issues blocking the message from sending
+
+#### A Cloud Function Defined
+
+- a function stored at a URL; make a get req to this url, this function will be called
+- recieves data through query strings
+- Perfect for Single operation use-cases
+
+### III. CORS (Cross Origin Resource Sharing):
+
+- Network Requests
+- When trying to access a resource not on the same domain as you, request may be blocked
+- Makes cross site scripting difficult
+
+### NOW Sending the Message:
+
+-
