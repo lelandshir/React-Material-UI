@@ -604,5 +604,6 @@ exports.sendMail = functions.https.onRequest((request, response) => {
 
 			`,
 		};
+		transporter.sendMail(mailOptions);
 	});
 });
