@@ -484,9 +484,9 @@ exports.sendMail = functions.https.onRequest((request, response) => {
                                         class="font11"
                                       >
                                         <a
-                                          href="mailto:zachary@gmail.com"
+                                          href="mailto:lelandmshirley@gmail.com"
                                           style="color:#ffffff; text-decoration:none!important"
-                                          >zachary@gmail.com</a
+                                          >lelandmshirley@gmail.com</a
                                         >
                                       </td>
                                     </tr>
@@ -528,7 +528,7 @@ exports.sendMail = functions.https.onRequest((request, response) => {
                                         class="spacer"
                                       >
                                         <a
-                                          href="https://www.instagram.com/development_arc"
+                                          href="https://www.instagram.com/lelandshir.ley"
                                           target="_blank"
                                         >
                                           <img
@@ -548,7 +548,7 @@ exports.sendMail = functions.https.onRequest((request, response) => {
                                         class="spacer"
                                       >
                                         <a
-                                          href="https://twitter.com/development_arc"
+                                          href="https://twitter.com/heirloomradish"
                                           target="_blank"
                                         >
                                           <img

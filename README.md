@@ -394,3 +394,7 @@ From here - Should be successfully able to send off a `network request` using `a
 - after the URL string in the axios network request, as a second argument pass the query string as an object called params, passing all the props and values
 - check out the mailOptions object in functions -> index.js ...folllow that
 - professional email template :: table based -> html response
+- stop server
+- `firebase` deploy to reaffirm the newest version of the function
+- npm start
+- test
