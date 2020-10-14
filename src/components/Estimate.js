@@ -36,7 +36,19 @@ import estimateAnimation from "../animations/estimateAnimation/data.json";
 const useStyles = makeStyles((theme) => ({
 	icon: {
 		width: "12em",
-		height: "12em",
+		height: "10em",
+	},
+	estimateButton: {
+		...theme.typography.estimate,
+		borderRadius: 50,
+		backgroundColor: theme.palette.common.orange,
+		height: 50,
+		width: 225,
+		fontSize: "1.25rem",
+		marginTop: "5em",
+		"&:hover": {
+			backgroundColor: theme.palette.secondary.light,
+		},
 	},
 }));
 
@@ -63,7 +75,12 @@ export default function Estimate(props) {
 					item
 					style={{ marginRight: "10em", maxWidth: "50em", marginTop: "7.5em" }}
 				>
-					<Lottie options={defaultOptions} height="100%" width="100%" />
+					<Lottie
+						isPaused
+						options={defaultOptions}
+						height="100%"
+						width="100%"
+					/>
 				</Grid>
 			</Grid>
 			<Grid
@@ -71,6 +88,7 @@ export default function Estimate(props) {
 				container
 				direction="column"
 				style={{ marginRight: "2em", marginBottom: "25em" }}
+				alignItems="center"
 				lg
 			>
 				<Grid item>
@@ -143,6 +161,24 @@ export default function Estimate(props) {
 							/>
 						</Grid>
 					</Grid>
+				</Grid>
+				<Grid
+					item
+					container
+					justify="space-between"
+					style={{ width: "15em", marginTop: "3em" }}
+				>
+					<Grid item>
+						<img src={backArrow} alt="Previous question" />
+					</Grid>
+					<Grid item>
+						<img src={forwardArrow} alt="Next question" />
+					</Grid>
+				</Grid>
+				<Grid item>
+					<Button variant="contained" className={classes.estimateButton}>
+						Get Estimate
+					</Button>
 				</Grid>
 			</Grid>
 		</Grid>
