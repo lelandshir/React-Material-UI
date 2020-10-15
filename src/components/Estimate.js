@@ -313,7 +313,7 @@ export default function Estimate(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 
-	const [questions, setQuestions] = useState(softwareQuestions);
+	const [questions, setQuestions] = useState(defaultQuestions);
 
 	const defaultOptions = {
 		loop: true,
@@ -374,9 +374,35 @@ export default function Estimate(props) {
 		const activeIndex = currentlyActive[0].id - 1;
 
 		const newSelected = newQuestions[activeIndex].options[id - 1];
-		newSelected.selected = !newSelected.selected;
+		const prevSelected = currentlyActive[0].options.filter(
+			(option) => option.selected
+		);
 
-		setQuestions(newQuestions);
+		switch (currentlyActive[0].subtitle) {
+			case "Select one.":
+				if (prevSelected[0]) {
+					prevSelected[0].selected = !prevSelected[0].selected;
+				}
+				newSelected.selected = !newSelected.selected;
+				break;
+			default:
+				newSelected.selected = !newSelected.selected;
+				break;
+		}
+
+		switch (newSelected.title) {
+			case "Custom Software Development":
+				setQuestions(softwareQuestions);
+				break;
+			case "iOS/Android App Development":
+				setQuestions(softwareQuestions);
+				break;
+			case "Website Development":
+				setQuestions(websiteQuestions);
+				break;
+			default:
+				setQuestions(newQuestions);
+		}
 	};
 
 	return (
