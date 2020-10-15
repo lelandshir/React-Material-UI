@@ -398,3 +398,29 @@ From here - Should be successfully able to send off a `network request` using `a
 - `firebase` deploy to reaffirm the newest version of the function
 - npm start
 - test
+
+### A good use of Lodash's cloneDeep method:
+
+- Make proper copies of nested items so that we don't attempt to incorrectly data
+
+- Elaborate: Spreading data (...) into new objects or arrays may cause mutability issues and this makes working with nested objects and arrays in state very tricky. When copying over a reference of an obj or arr into a new const and changing a property of it from the new const will change the orginal as well. To properly copy over all the data makes for some pretty messy syntax...
+
+- In comes Lodash. We can `npm i --save lodash` and import the cloneDeep function from it. Pass the item to copied through cloneDeep and set that equal to the constant, change a property and we'll find that cloneDeep has made a true copy of the data, and not a shallow copy.
+
+- lodash imports from an underscore, otherwise destructure out the methods you want to use
+
+- See use of this in the Estimate.js file
+
+- #### correctly maintain a mutable state by using cloneDeep via lodash:
+  wrong:
+- const newQuestions = { ...defaultQuestions };
+- newQuestions[0].options[0].selected = true;
+- console.log(defaultQuestions[0].options[0]);
+- => selected will be true on defaultQuestions the copy
+
+correct:
+
+- const newQuestions = cloneDeep(defaultQuestions);
+- newQuestions[0].options[0].selected = true;
+- console.log(defaultQuestions[0].options[0]);
+- => only the true copy will have been changed
