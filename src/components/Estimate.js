@@ -342,6 +342,13 @@ export default function Estimate(props) {
 
 	const [total, setTotal] = useState(0);
 
+	const [service, setService] = useState([]);
+	const [platforms, setPlatforms] = useState([]);
+	const [features, setFeatures] = useState([]);
+	const [customFeatures, setCustomFeatures] = useState("");
+	const [category, setCategory] = useState("");
+	const [users, setUsers] = useState("");
+
 	const defaultOptions = {
 		loop: true,
 		autoplay: false,
@@ -420,12 +427,15 @@ export default function Estimate(props) {
 		switch (newSelected.title) {
 			case "Custom Software Development":
 				setQuestions(softwareQuestions);
+				setService(newSelected.title);
 				break;
 			case "iOS/Android App Development":
 				setQuestions(softwareQuestions);
+				setService(newSelected.title);
 				break;
 			case "Website Development":
 				setQuestions(websiteQuestions);
+				setService(newSelected.title);
 				break;
 			default:
 				setQuestions(newQuestions);
@@ -636,65 +646,114 @@ export default function Estimate(props) {
 						</Typography>
 					</Grid>
 				</Grid>
-				<Grid container>
-					<Grid item container direction="column">
-						<Grid item style={{ marginBottom: "0.5em" }}>
-							<TextField
-								label="Name"
-								id="name"
-								fullWidth
-								value={name}
-								onChange={(event) => setName(event.target.value)}
-							/>
+				<DialogContent>
+					<Grid container>
+						<Grid item container direction="column" md={7}>
+							<Grid item style={{ marginBottom: "0.5em" }}>
+								<TextField
+									label="Name"
+									id="name"
+									fullWidth
+									value={name}
+									onChange={(event) => setName(event.target.value)}
+								/>
+							</Grid>
+							<Grid item style={{ marginBottom: "0.5em" }}>
+								<TextField
+									label="Email"
+									error={emailHelper.length !== 0}
+									helperText={emailHelper}
+									id="email"
+									fullWidth
+									value={email}
+									onChange={onChange}
+								/>
+							</Grid>
+							<Grid item style={{ marginBottom: "0.5em" }}>
+								<TextField
+									label="Phone"
+									error={phoneHelper.length !== 0}
+									helperText={phoneHelper}
+									id="phone"
+									fullWidth
+									value={phone}
+									onChange={onChange}
+								/>
+							</Grid>
+							<Grid item style={{ maxWidth: "20em" }}>
+								<TextField
+									fullWidth
+									InputProps={{ disableUnderline: true }}
+									value={message}
+									className={classes.message}
+									id="message"
+									onChange={(event) => setMessage(event.target.value)}
+									multiline
+									rows={10}
+								/>
+							</Grid>
+							<Grid item>
+								<Typography variant="body1" paragraph>
+									We can create this digital solution for an estimated{" "}
+									<span className={classes.specialText}>
+										${total.toFixed(2)}
+									</span>
+								</Typography>
+								<Typography variant="body1" paragraph>
+									Fill out yor name, phone number, and email, place your
+									request, and we'll get back to you with details moving forward
+									and a final price.
+								</Typography>
+							</Grid>
 						</Grid>
-						<Grid item style={{ marginBottom: "0.5em" }}>
-							<TextField
-								label="Email"
-								error={emailHelper.length !== 0}
-								helperText={emailHelper}
-								id="email"
-								fullWidth
-								value={email}
-								onChange={onChange}
-							/>
-						</Grid>
-						<Grid item style={{ marginBottom: "0.5em" }}>
-							<TextField
-								label="Phone"
-								error={phoneHelper.length !== 0}
-								helperText={phoneHelper}
-								id="phone"
-								fullWidth
-								value={phone}
-								onChange={onChange}
-							/>
+						<Grid item container direction="column" md={5}>
+							<Grid item>
+								<Grid item direction="column">
+									<Grid item container alignItems="center">
+										<Grid item>
+											<img src={check} alt="checkmark" />
+										</Grid>
+										<Grid item>
+											<Typography variant="body1">
+												You want {service}
+											</Typography>
+										</Grid>
+									</Grid>
+									<Grid item container alignItems="center">
+										<Grid item>
+											<img src={check} alt="checkmark" />
+										</Grid>
+										<Grid item>
+											<Typography variant="body1">
+												Second options check
+											</Typography>
+										</Grid>
+									</Grid>
+									<Grid item container alignItems="center">
+										<Grid item>
+											<img src={check} alt="checkmark" />
+										</Grid>
+										<Grid item>
+											<Typography variant="body1">
+												Third options check
+											</Typography>
+										</Grid>
+									</Grid>
+								</Grid>
+							</Grid>
+							<Grid item>
+								<Button variant="contained" className={classes.estimateButton}>
+									Place Request
+									<img
+										src={send}
+										alt="paper airplane"
+										style={{ marginLeft: "0.5em" }}
+									/>
+								</Button>
+							</Grid>
 						</Grid>
 					</Grid>
-
-					<Grid item style={{ maxWidth: "20em" }}>
-						<TextField
-							fullWidth
-							InputProps={{ disableUnderline: true }}
-							value={message}
-							className={classes.message}
-							id="message"
-							onChange={(event) => setMessage(event.target.value)}
-							multiline
-							rows={10}
-						/>
-					</Grid>
-					<Grid item>
-						<Typography variant="body1" paragraph>
-							We can create this digital solution for an estimated{" "}
-							<span className={classes.specialText}>${total.toFixed(2)}</span>
-						</Typography>
-						<Typography variant="body1" paragraph>
-							Fill out yor name, phone number, and email, place your request,
-							and we'll get back to you with details moving forward and a final
-							price.
-						</Typography>
-					</Grid>
-				</Grid>
+				</DialogContent>
 			</Dialog>
 		</Grid>
 	);
