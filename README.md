@@ -424,3 +424,6 @@ correct:
 - newQuestions[0].options[0].selected = true;
 - console.log(defaultQuestions[0].options[0]);
 - => only the true copy will have been changed
+
+- Adding component={Button} to a grid item to turn it into a button
+- default styling occurs, learn to shut it off with styling
