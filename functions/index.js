@@ -18,13 +18,13 @@ let mailOptions = {
 	from: "Arc Development",
 };
 
-// // Create and Deploy Your First Cloud Functions
+// // Create and Deploy Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.sendMail = functions.https.onRequest((request, response) => {
 	cors(request, response, () => {
-		//destructure these out as their own constants
 		const { name, email, phone, message } = request.query;
+
 		mailOptions = {
 			...mailOptions,
 			to: "lelandshir@gmail.com",
@@ -36,6 +36,7 @@ exports.sendMail = functions.https.onRequest((request, response) => {
 			<p style="font-size: 16px">Message: ${message}</p>
 			`,
 		};
+
 		transporter.sendMail(mailOptions, (error) => {
 			if (error) {
 				response.send(error);
@@ -43,6 +44,7 @@ exports.sendMail = functions.https.onRequest((request, response) => {
 				response.send("Message sent successfuly");
 			}
 		});
+
 		mailOptions = {
 			...mailOptions,
 			to: email,
