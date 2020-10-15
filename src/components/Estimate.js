@@ -60,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: "5em",
 		borderRadius: 5,
 	},
+	specialText: {
+		fontFamily: "Raleway",
+		fontWeight: 700,
+		fontSize: "1.5rem",
+		color: theme.palette.common.orange,
+	},
 }));
 
 const defaultQuestions = [
@@ -334,6 +340,8 @@ export default function Estimate(props) {
 
 	const [message, setMessage] = useState("");
 
+	const [total, setTotal] = useState(0);
+
 	const defaultOptions = {
 		loop: true,
 		autoplay: false,
@@ -458,6 +466,33 @@ export default function Estimate(props) {
 		}
 	};
 
+	const getTotal = () => {
+		let cost = 0;
+
+		const selections = questions
+			.map((question) => question.options.filter((option) => option.selected))
+			.filter((question) => question.length > 0);
+
+		selections.map((options) => options.map((option) => (cost += option.cost)));
+
+		if (questions.length > 2) {
+			const userCost = questions
+				.filter(
+					(question) => question.title === "How many users do you expect?"
+				)
+				.map((question) =>
+					question.options.filter((option) => option.selected)
+				)[0][0].cost;
+
+			cost -= userCost;
+			cost *= userCost;
+
+			console.log(cost);
+		}
+
+		setTotal(cost);
+	};
+
 	return (
 		<Grid container direction="row">
 			<Grid item container direction="column" lg>
@@ -511,8 +546,9 @@ export default function Estimate(props) {
 								</Typography>
 							</Grid>
 							<Grid item container>
-								{question.options.map((option) => (
+								{question.options.map((option, i) => (
 									<Grid
+										key={i}
 										item
 										container
 										direction="column"
@@ -581,7 +617,10 @@ export default function Estimate(props) {
 				</Grid>
 				<Grid item>
 					<Button
-						onClick={() => setDialogOpen(true)}
+						onClick={() => {
+							setDialogOpen(true);
+							getTotal();
+						}}
 						variant="contained"
 						className={classes.estimateButton}
 					>
@@ -646,7 +685,8 @@ export default function Estimate(props) {
 					</Grid>
 					<Grid item>
 						<Typography variant="body1" paragraph>
-							We can create this digital solution for an estimated
+							We can create this digital solution for an estimated{" "}
+							<span className={classes.specialText}>${total.toFixed(2)}</span>
 						</Typography>
 						<Typography variant="body1" paragraph>
 							Fill out yor name, phone number, and email, place your request,
