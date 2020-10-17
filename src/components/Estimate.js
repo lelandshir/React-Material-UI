@@ -10,6 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Hidden from "@material-ui/core/Hidden";
 
 import check from "../assets/check.svg";
 import send from "../assets/send.svg";
@@ -57,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	message: {
 		border: `2px solid ${theme.palette.common.blue}`,
-		marginTop: "5em",
+		marginTop: "3em",
+		marginBottom: "2em",
 		borderRadius: 5,
 	},
 	specialText: {
@@ -326,6 +329,9 @@ const websiteQuestions = [
 export default function Estimate(props) {
 	const classes = useStyles();
 	const theme = useTheme();
+
+	const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+	const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
 	const [questions, setQuestions] = useState(defaultQuestions);
 	const [dialogOpen, setDialogOpen] = useState(false);
@@ -682,7 +688,7 @@ export default function Estimate(props) {
 	);
 
 	const websiteSelection = (
-		<Grid item direction="column">
+		<Grid item direction="column" style={{ marginTop: "14em" }}>
 			<Grid item container alignItems="center">
 				<Grid item xs={2}>
 					<img src={check} alt="checkmark" />
@@ -701,13 +707,28 @@ export default function Estimate(props) {
 
 	return (
 		<Grid container direction="row">
-			<Grid item container direction="column" lg>
-				<Grid item style={{ marginTop: "5em", marginLeft: "5em" }}>
-					<Typography variant="h2">Estimate</Typography>
+			<Grid
+				item
+				container
+				direction="column"
+				alignItems={matchesMD ? "center" : undefined}
+				lg
+			>
+				<Grid
+					item
+					style={{ marginTop: "5em", marginLeft: matchesMD ? 0 : "5em" }}
+				>
+					<Typography variant="h2" align={matchesMD ? "center" : undefined}>
+						Estimate
+					</Typography>
 				</Grid>
 				<Grid
 					item
-					style={{ marginRight: "10em", maxWidth: "50em", marginTop: "7.5em" }}
+					style={{
+						marginRight: matchesMD ? 0 : "10em",
+						maxWidth: "50em",
+						marginTop: "7.5em",
+					}}
 				>
 					<Lottie
 						isPaused
@@ -721,7 +742,7 @@ export default function Estimate(props) {
 				item
 				container
 				direction="column"
-				style={{ marginRight: "2em", marginBottom: "25em" }}
+				style={{ marginRight: matchesMD ? 0 : "2em", marginBottom: "25em" }}
 				alignItems="center"
 				lg
 			>
@@ -738,6 +759,8 @@ export default function Estimate(props) {
 										fontSize: "2.25rem",
 										marginTop: "5em",
 										lineHeight: 1.25,
+										marginLeft: matchesSM ? "1em" : 0,
+										marginRight: matchesSM ? "1em" : 0,
 									}}
 								>
 									{question.title}
@@ -765,6 +788,7 @@ export default function Estimate(props) {
 											display: "grid",
 											textTransform: "none",
 											borderRadius: 0,
+											marginBottom: matchesSM ? "1.5em" : 0,
 											backgroundColor: option.selected
 												? theme.palette.common.orange
 												: null,
@@ -843,16 +867,23 @@ export default function Estimate(props) {
 				onClose={() => setDialogOpen(false)}
 				fullWidth
 				maxWidth="lg"
+				fullScreen={matchesSM}
+				style={{ zIndex: 1302 }}
 			>
 				<Grid container justify="center">
-					<Grid item>
+					<Grid item style={{ marginTop: "1em", marginBottom: "1em" }}>
 						<Typography variant="h2" align="center">
 							Estimate
 						</Typography>
 					</Grid>
 				</Grid>
 				<DialogContent>
-					<Grid container justify="space-around">
+					<Grid
+						container
+						justify="space-around"
+						direction={matchesSM ? "column" : "row"}
+						alignItems={matchesSM ? "center" : undefined}
+					>
 						<Grid
 							item
 							container
@@ -904,13 +935,21 @@ export default function Estimate(props) {
 								/>
 							</Grid>
 							<Grid item>
-								<Typography variant="body1" paragraph>
+								<Typography
+									variant="body1"
+									paragraph
+									align={matchesSM ? "center" : undefined}
+								>
 									We can create this digital solution for an estimated{" "}
 									<span className={classes.specialText}>
 										${total.toFixed(2)}
 									</span>
 								</Typography>
-								<Typography variant="body1" paragraph>
+								<Typography
+									variant="body1"
+									paragraph
+									align={matchesSM ? "center" : undefined}
+								>
 									Fill out yor name, phone number, and email, place your
 									request, and we'll get back to you with details moving forward
 									and a final price.
@@ -921,12 +960,16 @@ export default function Estimate(props) {
 							item
 							container
 							direction="column"
+							alignItems={matchesSM ? "center" : undefined}
 							md={5}
 							style={{ maxWidth: "30em" }}
 						>
-							<Grid item>
-								{questions.length > 2 ? softwareSelection : websiteSelection}
-							</Grid>
+							<Hidden smDown>
+								<Grid item>
+									{questions.length > 2 ? softwareSelection : websiteSelection}
+								</Grid>
+							</Hidden>
+
 							<Grid item>
 								<Button variant="contained" className={classes.estimateButton}>
 									Place Request
@@ -937,6 +980,18 @@ export default function Estimate(props) {
 									/>
 								</Button>
 							</Grid>
+
+							<Hidden mdUp>
+								<Grid item style={{ marginBottom: matchesSM ? "5em" : 0 }}>
+									<Button
+										style={{ fontWeight: 300 }}
+										color="primary"
+										onClick={() => setDialogOpen(false)}
+									>
+										Cancel
+									</Button>
+								</Grid>
+							</Hidden>
 						</Grid>
 					</Grid>
 				</DialogContent>
