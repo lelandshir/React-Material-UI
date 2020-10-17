@@ -267,12 +267,7 @@ export default function Contact(props) {
 								</Typography>
 							</Grid>
 						</Grid>
-						<Grid
-							item
-							container
-							direction="column"
-							style={{ maxWidth: "20em" }}
-						>
+						<Grid item container direction="column" style={{ width: "20em" }}>
 							<Grid item style={{ marginBottom: "0.5em" }}>
 								<TextField
 									label="Name"
@@ -306,7 +301,7 @@ export default function Contact(props) {
 							</Grid>
 						</Grid>
 
-						<Grid item style={{ maxWidth: "20em" }}>
+						<Grid item style={{ width: "20em" }}>
 							<TextField
 								fullWidth
 								InputProps={{ disableUnderline: true }}
@@ -341,7 +336,7 @@ export default function Contact(props) {
 			<Dialog
 				style={{ zIndex: 1302 }}
 				open={open}
-				fullScreen={matchesXS}
+				fullScreen={matchesSM}
 				onClose={() => setOpen(false)}
 				PaperProps={{
 					style: {
@@ -352,15 +347,15 @@ export default function Contact(props) {
 							: matchesSM
 							? "5em"
 							: matchesMD
-							? "10em"
-							: "20em",
+							? "15em"
+							: "25em",
 						paddingRight: matchesXS
 							? 0
 							: matchesSM
 							? "5em"
 							: matchesMD
-							? "10em"
-							: "20em",
+							? "15em"
+							: "25em",
 					},
 				}}
 			>
@@ -404,7 +399,7 @@ export default function Contact(props) {
 							/>
 						</Grid>
 					</Grid>
-					<Grid item style={{ maxWidth: matchesXS ? "100%" : "20em" }}>
+					<Grid item style={{ width: matchesSM ? "100%" : "20em" }}>
 						<TextField
 							fullWidth
 							InputProps={{ disableUnderline: true }}
