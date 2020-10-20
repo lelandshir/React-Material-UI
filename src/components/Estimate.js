@@ -592,6 +592,31 @@ export default function Estimate(props) {
 		}
 	};
 
+	const sendEstimate = () => {
+		// const cors = "https://cors-anywhere.herokuapp.com/";
+		axios
+			.get(
+				`https://us-central1-material-ui-project-d27ca.cloudfunctions.net/sendMail`,
+				{
+					params: {
+						name: name,
+						email: email,
+						phone: phone,
+						message: message,
+						total: total,
+						category: category,
+						service: service,
+						platforms: platforms,
+						features: features,
+						customFeatures: customFeatures,
+						users: users,
+					},
+				}
+			)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
+
 	const softwareSelection = (
 		<Grid item direction="column">
 			<Grid
@@ -972,7 +997,11 @@ export default function Estimate(props) {
 							</Hidden>
 
 							<Grid item>
-								<Button variant="contained" className={classes.estimateButton}>
+								<Button
+									onClick={sendEstimate}
+									variant="contained"
+									className={classes.estimateButton}
+								>
 									Place Request
 									<img
 										src={send}
